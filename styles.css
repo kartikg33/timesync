@@ -1,23 +1,34 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-    color: #333;
+margin: 0;
+font-family: Arial, sans-serif;
+background-color: #f4f4f4;
+margin: 0;
+padding: 20px;
+color: #333;
 }
 
+
+/* Flexbox container to hold the content and footer */
 .container {
-max-width: 800px;
+display: flex;
+flex-direction: column;
+min-height: 100vh; /* Ensure full viewport height */
 margin: auto;
 text-align: center;
 }
 
-.local-time, .add-timezone {
-margin: 20px 0;
+/* Main content container should expand to fill available space */
+#timezone-cards {
+flex: 1; /* Make sure the content container expands */
+max-height: 200px;
 }
 
-#timezone-select {
+#timezone-offset {
 padding: 5px;
+}
+
+.local-time, .add-timezone, .support {
+margin: 20px 0;
 }
 
 .cards {
