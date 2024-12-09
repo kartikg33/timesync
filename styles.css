@@ -39,9 +39,37 @@ max-height: 200px;
 padding: 5px;
 }
 
-.local-time, .add-timezone {
+.add-timezone {
 margin: 20px 0;
 }
+
+/* Style the time input field */
+.local-time input[type="time"] {
+font-size: 1.5rem;       /* Larger text size */
+padding: 10px;           /* Add more padding inside the input */
+width: 200px;            /* Make the input field wider */
+height: 40px;            /* Increase the height for easier interaction */
+border: 2px solid #ccc;  /* Light gray border */
+border-radius: 5px;      /* Rounded corners for a modern look */
+background-color: #f9f9f9; /* Light background */
+transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for focus */
+}
+
+/* Add focus effect for better accessibility */
+.local-time input[type="time"]:focus {
+outline: none;                /* Remove default focus outline */
+border-color: #3498db;         /* Blue border when focused */
+box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); /* Soft blue shadow */
+}
+
+/* Style the label to align it well */
+.local-time label {
+font-size: 1.2rem;            /* Slightly larger text for label */
+margin-bottom: 8px;           /* Space between label and input */
+display: block;               /* Ensure the label is above the input */
+color: #555;                  /* Dark text color for readability */
+}
+
 
 .cards {
 display: flex;
