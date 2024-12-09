@@ -1,100 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>alethia</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      padding: 20px;
-      background-color: #f4f4f9;
-      color: #333;
-    }
-    h1, h2 {
-      text-align: center;
-    }
-    label, select, input, button {
-      display: block;
-      margin: 10px 0;
-    }
-    .results {
-      margin-top: 20px;
-      border: 1px solid #ddd;
-      padding: 15px;
-      background: #fff;
-    }
-    .result-item {
-      margin: 5px 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alethia</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>aletheia</h1>
-  <h2>Time Zone Converter</h2>
-  
-  <form id="time-form">
-    <label for="time-input">Select Time (Local):</label>
-    <input type="time" id="time-input" required>
+    <div class="container">
+        <h1>aletheia</h1>
+        <h2>Time Zone Converter</h2>
 
-    <label for="timezone-select">Select Time Zones:</label>
-    <select id="timezone-select" multiple size="5" required>
-      <option value="America/New_York">New York (EST)</option>
-      <option value="Europe/London">London (GMT)</option>
-      <option value="Asia/Tokyo">Tokyo (JST)</option>
-      <option value="Australia/Sydney">Sydney (AEDT)</option>
-      <option value="America/Los_Angeles">Los Angeles (PST)</option>
-    </select>
+        <!-- Local Time Selector -->
+        <div class="local-time">
+            <label for="local-time">Select Local Time:</label>
+            <input type="time" id="local-time" value="12:00">
+        </div>
     
-    <button type="submit">Convert Time</button>
-  </form>
-
-  <div id="results" class="results" style="display: none;">
-    <h2>Converted Times:</h2>
-    <div id="result-list"></div>
-  </div>
-
-  <script>
-    const form = document.getElementById('time-form');
-    const timeInput = document.getElementById('time-input');
-    const timezoneSelect = document.getElementById('timezone-select');
-    const resultsDiv = document.getElementById('results');
-    const resultList = document.getElementById('result-list');
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const localTime = timeInput.value;
-      if (!localTime) {
-        alert('Please select a time.');
-        return;
-      }
-
-      const selectedTimezones = Array.from(timezoneSelect.selectedOptions).map(option => option.value);
-      if (selectedTimezones.length === 0) {
-        alert('Please select at least one time zone.');
-        return;
-      }
-
-      const [hours, minutes] = localTime.split(':');
-      const localDate = new Date();
-      localDate.setHours(parseInt(hours));
-      localDate.setMinutes(parseInt(minutes));
-      localDate.setSeconds(0);
-
-      resultList.innerHTML = '';
-      selectedTimezones.forEach(timezone => {
-        const convertedDate = new Date(localDate.toLocaleString('en-US', { timeZone: timezone }));
-        const convertedTime = convertedDate.toTimeString().split(' ')[0];
-        const resultItem = document.createElement('div');
-        resultItem.className = 'result-item';
-        resultItem.textContent = `${timezone}: ${convertedTime}`;
-        resultList.appendChild(resultItem);
-      });
-
-      resultsDiv.style.display = 'block';
-    });
-  </script>
+        <!-- Add Timezone -->
+        <div class="add-timezone">
+            <label for="timezone-select">Add Timezone:</label>
+            <select id="timezone-select">
+            <option value="UTC" selected>UTC</option>
+            <option value="America/New_York">New York (EST)</option>
+            <option value="Europe/London">London (GMT)</option>
+            <option value="Asia/Tokyo">Tokyo (JST)</option>
+            <option value="Australia/Sydney">Sydney (AEST)</option>
+            </select>
+            <button id="add-timezone-btn">Add Timezone</button>
+        </div>
+    
+        <!-- Timezone Cards -->
+        <div id="timezone-cards" class="cards">
+            <!-- Cards will be dynamically added here -->
+        </div>
+        </div>
+    </div>
+  
+    <script src="script.js"></script>
 </body>
 </html>
