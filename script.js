@@ -4,6 +4,22 @@ const timezoneSelect = document.getElementById("timezone-select");
 const addTimezoneBtn = document.getElementById("add-timezone-btn");
 const timezoneCards = document.getElementById("timezone-cards");
 
+// Function to populate the dropdown with all time zones
+function populateTimezones() {
+  // Check if the browser supports `Intl.supportedValuesOf`
+  if (Intl.supportedValuesOf) {
+    const timezones = Intl.supportedValuesOf("timeZone");
+    timezones.forEach((timezone) => {
+      const option = document.createElement("option");
+      option.value = timezone;
+      option.textContent = timezone;
+      timezoneSelect.appendChild(option);
+    });
+  } else {
+    alert("Your browser does not support fetching all time zones.");
+  }
+}
+
 // Function to format time (HH:mm) in a given timezone
 function formatTime(localTime, timezone) {
   const [hours, minutes] = localTime.split(":").map(Number);
@@ -66,3 +82,6 @@ function addTimezoneCard() {
 // Event Listeners
 localTimeInput.addEventListener("input", updateTimezoneCards);
 addTimezoneBtn.addEventListener("click", addTimezoneCard);
+
+// Populate timezones on page load
+populateTimezones();
