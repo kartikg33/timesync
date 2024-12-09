@@ -50,32 +50,39 @@ function updateTimezoneCards() {
 
 // Function to add a new timezone card
 function addTimezoneCard() {
-  const offset = timezoneSelect.value;
-  const label = timezoneSelect.options[timezoneSelect.selectedIndex].text;
+    const offset = timezoneSelect.value;
+    const label = timezoneSelect.options[timezoneSelect.selectedIndex].text;
 
-  // Check if the timezone is already added
-  if (document.querySelector(`.card[data-offset="${offset}"]`)) {
-    alert("Timezone already added!");
-    return;
-  }
+    // Check if the timezone is already added
+    if (document.querySelector(`.card[data-offset="${offset}"]`)) {
+        alert("Timezone already added!");
+        return;
+    }
 
-  // Create a new card
-  const card = document.createElement("div");
-  card.className = "card";
-  card.dataset.offset = offset;
+    // Create a new card
+    const card = document.createElement("div");
+    card.className = "card";
+    card.dataset.offset = offset;
 
-  // Set the initial time
-  const localTime = localTimeInput.value;
-  const time = calculateTime(localTime, offset);
+    // Set the initial time
+    const localTime = localTimeInput.value;
+    const time = calculateTime(localTime, offset);
 
-  // Add content to the card
-  card.innerHTML = `
-    <h2>${label}</h2>
-    <p class="time">${time}</p>
-  `;
+    // Add content to the card
+    card.innerHTML = `
+        <h2>${label}</h2>
+        <p class="time">${time}</p>
+        <button class="delete-btn">Delete</button>
+    `;
 
-  // Append the card to the container
-  timezoneCards.appendChild(card);
+    // Append the card to the container
+    timezoneCards.appendChild(card);
+
+    // Add event listener to delete button
+    const deleteBtn = card.querySelector(".delete-btn");
+    deleteBtn.addEventListener("click", () => {
+        card.remove(); // Remove the card from the DOM
+    });
 }
 
 // Event Listeners
