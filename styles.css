@@ -4,47 +4,75 @@ body {
     margin: 0;
     padding: 20px;
     color: #333;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: auto;
-    text-align: center;
-  }
-  
-  .local-time, .add-timezone {
-    margin: 20px 0;
-  }
-  
-  #timezone-select {
-    padding: 5px;
-  }
-  
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  .card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .card h2 {
-    margin: 0;
-    font-size: 20px;
-    color: #0078D7;
-  }
-  
-  .card p {
-    font-size: 18px;
-    margin: 10px 0 0;
-  }
-  
+}
+
+.container {
+max-width: 800px;
+margin: auto;
+text-align: center;
+}
+
+.local-time, .add-timezone {
+margin: 20px 0;
+}
+
+#timezone-select {
+padding: 5px;
+}
+
+.cards {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+}
+
+/* Basic layout for cards */
+.card {
+background-color: #fff;
+padding: 20px;
+margin: 15px;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+position: relative;
+width: 200px;
+text-align: center;
+font-family: 'Arial', sans-serif;
+}
+
+/* Timezone text (small font) */
+.card h2 {
+font-size: 14px;
+color: #888;
+margin: 0;
+}
+
+/* Time (large, digital clock style) */
+.card .time {
+font-size: 36px;
+font-weight: bold;
+color: #333;
+margin-top: 10px;
+letter-spacing: 2px;
+}
+
+/* Delete button - small icon in the top corner */
+.card .delete-btn {
+position: absolute;
+top: 3px;
+left: 3px;
+background: transparent;
+border: none;
+font-size: 16px;
+cursor: pointer;
+color: #888;
+}
+
+.card .delete-btn:hover {
+color: #e74c3c;
+}
+
+/* Hover effect on the card */
+.card:hover {
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
