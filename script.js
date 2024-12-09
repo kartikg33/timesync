@@ -72,7 +72,7 @@ function addTimezoneCard() {
     card.innerHTML = `
         <h2>${label}</h2>
         <p class="time">${time}</p>
-        <button class="delete-btn">Delete</button>
+        <button class="delete-btn">&times;</button>
     `;
 
     // Append the card to the container
