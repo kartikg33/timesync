@@ -1,10 +1,22 @@
+html {
+height: 100%;
+margin: 0;
+}
+
+/* Make sure the body takes up full height */
 body {
+height: 100%;
 margin: 0;
 font-family: Arial, sans-serif;
 background-color: #f4f4f4;
 margin: 0;
 padding: 20px;
 color: #333;
+}
+
+h1, h2 {
+margin: 0;
+padding: 10px;
 }
 
 
@@ -27,7 +39,7 @@ max-height: 200px;
 padding: 5px;
 }
 
-.local-time, .add-timezone, .support {
+.local-time, .add-timezone {
 margin: 20px 0;
 }
 
@@ -86,4 +98,29 @@ color: #e74c3c;
 /* Hover effect on the card */
 .card:hover {
 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer styles */
+.support {
+padding: 20px;
+text-align: center;
+font-family: 'Arial', sans-serif;
+}
+
+/* Footer text and links */
+.support p {
+margin: 0;
+color: #555;
+font-size: 14px;
+}
+
+.support a {
+text-decoration: none;
+color: #3498db; /* Light blue color for links */
+font-weight: bold;
+padding: 0 10px;
+}
+
+.support a:hover {
+color: #e74c3c; /* Red color on hover */
 }
