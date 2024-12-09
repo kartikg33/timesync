@@ -4,31 +4,33 @@ const timezoneSelect = document.getElementById("timezone-offset");
 const addTimezoneBtn = document.getElementById("add-timezone-btn");
 const timezoneCards = document.getElementById("timezone-cards");
 
-// Function to calculate time with a given offset
+// Function to calculate time with a given offset, assuming local time is the user's local time
 function calculateTime(localTime, offset) {
   const [localHours, localMinutes] = localTime.split(":").map(Number);
 
-  // Parse offset (e.g., +05:30 -> +5 hours, 30 minutes)
+  // Get user's local timezone offset in minutes (negative for GMT+)
+  const localOffsetMinutes = new Date().getTimezoneOffset(); // e.g., -330 for IST (GMT+5:30)
+
+  // Parse the selected offset (e.g., +05:30 -> +5 hours, 30 minutes)
   const offsetSign = offset[0] === "+" ? 1 : -1;
   const [offsetHours, offsetMinutes] = offset.slice(1).split(":").map(Number);
 
-  // Calculate new time
-  let newHours = localHours + offsetSign * offsetHours;
-  let newMinutes = localMinutes + offsetSign * offsetMinutes;
+  // Convert local time (in user local timezone) to UTC
+  let totalMinutes = localHours * 60 + localMinutes + localOffsetMinutes;
 
-  // Handle minute overflow
-  if (newMinutes >= 60) {
-    newMinutes -= 60;
-    newHours += 1;
-  } else if (newMinutes < 0) {
+  // Adjust for the selected timezone offset
+  totalMinutes += offsetSign * (offsetHours * 60 + offsetMinutes);
+
+  // Handle overflow of minutes into hours and days
+  let newHours = Math.floor(totalMinutes / 60) % 24;
+  let newMinutes = totalMinutes % 60;
+
+  // Adjust for negative hours (e.g., -1 hour should become 23:00 of the previous day)
+  if (newMinutes < 0) {
     newMinutes += 60;
     newHours -= 1;
   }
-
-  // Handle hour overflow (24-hour clock)
-  if (newHours >= 24) {
-    newHours -= 24;
-  } else if (newHours < 0) {
+  if (newHours < 0) {
     newHours += 24;
   }
 
@@ -37,7 +39,7 @@ function calculateTime(localTime, offset) {
 
 // Function to update all timezone cards
 function updateTimezoneCards() {
-  const localTime = localTimeInput.value;
+  const localTime = localTimeInput.value; // User's local time
 
   document.querySelectorAll(".card").forEach((card) => {
     const offset = card.dataset.offset;
