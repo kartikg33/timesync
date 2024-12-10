@@ -63,6 +63,7 @@ function addLocalTimeCard() {
   // Add content to the card
   card.innerHTML = `
       <h2>${label}</h2>
+      <p><i>This is your local timezone</i></p>
       <input type="time" id="local-time" value=${localTime}>
   `;
 
