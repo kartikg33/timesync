@@ -78,7 +78,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         newWidgetDiv.id = newWidgetId;
         container.appendChild(newWidgetDiv);
 
-        const newWidget = new TimeSelectorWidget(newWidgetId, 'UTC');
+        const newWidget = new TimeSelectorWidget(newWidgetId);
         TimeSelectorWidget.instances.push(newWidget); // Add the new widget to the global list
         });
     </script>
