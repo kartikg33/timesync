@@ -31,9 +31,9 @@ padding: 20px;
 color: #333;
 }
 
-h1, h2 {
-margin: 0;
-padding: 10px;
+h1, h2, h3 {
+margin: 5px;
+padding: 2px;
 }
 
 
