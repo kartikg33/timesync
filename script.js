@@ -115,4 +115,4 @@ localTimeInput.addEventListener("input", updateTimezoneCards);
 addTimezoneBtn.addEventListener("click", addTimezoneCard);
 
 // Initialise current timezone
-addLocalTimeCard();
+//addLocalTimeCard();
