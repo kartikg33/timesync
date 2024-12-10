@@ -146,7 +146,7 @@ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* Link button styles */
-.support {
+.actions {
 margin: 0;
 padding-top: 5px;
 padding-bottom: 30px;
@@ -154,10 +154,10 @@ text-align: center;
 font-family: 'Arial', sans-serif;
 }
 
-.support .button {
+.actions .button {
 display: inline-flex;
 align-items: center;
-background-color: #f3e9fd;
+background-color: white;
 color: #6e5494; /* GitHub's purple color */
 font-size: 18px;
 font-weight: bold;
@@ -168,17 +168,68 @@ cursor: pointer;
 transition: all 0.3s ease;
 }
 
-.support .button img {
+.actions .button img {
 width: 32px;
 height: 32px;
 margin-right: 10px; /* Space between logo and text */
 }
 
-.support .button span {
+.actions .button span {
 display: inline-block;
 }
 
-.support .button:hover {
-background-color: #bb9be6; /* Darker shade for hover effect */
-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+.actions .button:hover {
+background-color: #f3e9fd; /* Darker shade for hover effect */
+}
+
+/* Main widget container styles */
+.time-selector {
+display: flex;
+flex-direction: column;
+align-items: center;
+background: #fff;
+border-radius: 12px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+padding: 20px;
+margin-bottom: 20px;
+width: 300px;
+}
+
+/* Time input styles */
+.time-inputs {
+display: flex;
+align-items: center;
+margin-bottom: 15px;
+}
+
+.time-inputs select {
+font-size: 24px;
+font-weight: bold;
+padding: 5px;
+width: 70px;
+text-align: center;
+border: 2px solid #ccc;
+border-radius: 8px;
+appearance: none;
+cursor: pointer;
+background-color: transparent;
+}
+
+.time-colon {
+font-size: 24px;
+font-weight: bold;
+margin: 0 10px;
+}
+
+/* Timezone selector dropdown */
+.timezone-selector {
+margin-bottom: 10px;
+font-size: 16px;
+width: 100%;
+}
+
+/* Offset and DST label styles */
+.offset-label {
+font-size: 14px;
+color: #555;
 }
