@@ -57,7 +57,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     <script src="widget.js"></script>
     <script>
         // Initialize default widgets
-        const localTimeWidget = new TimeSelectorWidget('widget-container-local', 'UTC');
+        const localTimeWidget = new TimeSelectorWidget('widget-container-local', Intl.DateTimeFormat().resolvedOptions().timeZone);
 
         // update local time widget
         const localTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });

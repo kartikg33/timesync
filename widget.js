@@ -16,7 +16,7 @@
 */
 
 class TimeSelectorWidget {
-constructor(containerId, initialTimezone = 'UTC') {
+constructor(containerId, initialTimezone = 'Europe/London') {
     this.container = document.getElementById(containerId);
     this.timezone = initialTimezone;
     this.offsetMinutes = 0;
@@ -31,7 +31,7 @@ render() {
     widget.className = 'time-selector';
     widget.innerHTML = `
     <select class="timezone-selector">
-        ${this.generateTimezoneOptions()}
+        ${this.generateTimezoneOptions(this.timezone)}
     </select>
     <div class="time-inputs">
         <select class="hour-select">
@@ -58,23 +58,23 @@ generateOptions(min, max) {
     return options;
 }
 
-generateTimezoneOptions() {
+generateTimezoneOptions(currentTimezone) {
     const timezones = [
         { timezone: "Pacific/Midway", name: "(GMT-11:00) Midway Island" },
         { timezone: "America/Adak", name: "(GMT-10:00) Hawaii-Aleutian" },
-        { timezone: "Etc/GMT+10", name: "(GMT-10:00) Hawaii" },
+        { timezone: "Pacific/Honolulu", name: "(GMT-10:00) Hawaii" },
         { timezone: "Pacific/Marquesas", name: "(GMT-09:30) Marquesas Islands" },
         { timezone: "Pacific/Gambier", name: "(GMT-09:00) Gambier Islands" },
         { timezone: "America/Anchorage", name: "(GMT-09:00) Alaska" },
-        { timezone: "America/Ensenada", name: "(GMT-08:00) Tijuana, Baja California" },
-        { timezone: "Etc/GMT+8", name: "(GMT-08:00) Pitcairn Islands" },
+        { timezone: "America/Tijuana", name: "(GMT-08:00) Tijuana, Baja California" },
+        { timezone: "Pacific/Pitcairn", name: "(GMT-08:00) Pitcairn Islands" },
         { timezone: "America/Los_Angeles", name: "(GMT-08:00) Pacific Time (US & Canada)" },
         { timezone: "America/Denver", name: "(GMT-07:00) Mountain Time (US & Canada)" },
         { timezone: "America/Chihuahua", name: "(GMT-07:00) Chihuahua, La Paz, Mazatlan" },
-        { timezone: "America/Dawson_Creek", name: "(GMT-07:00) Arizona" },
-        { timezone: "America/Belize", name: "(GMT-06:00) Saskatchewan, Central America" },
-        { timezone: "America/Cancun", name: "(GMT-06:00) Guadalajara, Mexico City, Monterrey" },
-        { timezone: "Chile/EasterIsland", name: "(GMT-06:00) Easter Island" },
+        { timezone: "America/Phoenix", name: "(GMT-07:00) Arizona" },
+        { timezone: "America/Regina", name: "(GMT-06:00) Saskatchewan, Central America" },
+        { timezone: "America/Mexico_City", name: "(GMT-06:00) Guadalajara, Mexico City, Monterrey" },
+        { timezone: "Pacific/Easter", name: "(GMT-06:00) Easter Island" },
         { timezone: "America/Chicago", name: "(GMT-06:00) Central Time (US & Canada)" },
         { timezone: "America/New_York", name: "(GMT-05:00) Eastern Time (US & Canada)" },
         { timezone: "America/Havana", name: "(GMT-05:00) Cuba" },
@@ -82,24 +82,21 @@ generateTimezoneOptions() {
         { timezone: "America/Caracas", name: "(GMT-04:30) Caracas" },
         { timezone: "America/Santiago", name: "(GMT-04:00) Santiago" },
         { timezone: "America/La_Paz", name: "(GMT-04:00) La Paz" },
-        { timezone: "Atlantic/Stanley", name: "(GMT-04:00) Faukland Islands" },
+        { timezone: "Atlantic/Stanley", name: "(GMT-04:00) Falkland Islands" },
         { timezone: "America/Campo_Grande", name: "(GMT-04:00) Brazil" },
         { timezone: "America/Goose_Bay", name: "(GMT-04:00) Atlantic Time (Goose Bay)" },
-        { timezone: "America/Glace_Bay", name: "(GMT-04:00) Atlantic Time (Canada)" },
+        { timezone: "America/Halifax", name: "(GMT-04:00) Atlantic Time (Canada)" },
         { timezone: "America/St_Johns", name: "(GMT-03:30) Newfoundland" },
         { timezone: "America/Araguaina", name: "(GMT-03:00) UTC-3" },
         { timezone: "America/Montevideo", name: "(GMT-03:00) Montevideo" },
         { timezone: "America/Miquelon", name: "(GMT-03:00) Miquelon, St. Pierre" },
-        { timezone: "America/Godthab", name: "(GMT-03:00) Greenland" },
+        { timezone: "America/Nuuk", name: "(GMT-03:00) Greenland" },
         { timezone: "America/Argentina/Buenos_Aires", name: "(GMT-03:00) Buenos Aires" },
         { timezone: "America/Sao_Paulo", name: "(GMT-03:00) Brasilia" },
         { timezone: "America/Noronha", name: "(GMT-02:00) Mid-Atlantic" },
         { timezone: "Atlantic/Cape_Verde", name: "(GMT-01:00) Cape Verde Is." },
         { timezone: "Atlantic/Azores", name: "(GMT-01:00) Azores" },
-        { timezone: "Europe/Belfast", name: "(GMT) Greenwich Mean Time : Belfast" },
-        { timezone: "Europe/Dublin", name: "(GMT) Greenwich Mean Time : Dublin" },
-        { timezone: "Europe/Lisbon", name: "(GMT) Greenwich Mean Time : Lisbon" },
-        { timezone: "Europe/London", name: "(GMT) Greenwich Mean Time : London" },
+        { timezone: "Europe/London", name: "(GMT) London, Lisbon, Belfast, Dublin" },
         { timezone: "Africa/Abidjan", name: "(GMT) Monrovia, Reykjavik" },
         { timezone: "Europe/Amsterdam", name: "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna" },
         { timezone: "Europe/Belgrade", name: "(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague" },
@@ -109,26 +106,26 @@ generateTimezoneOptions() {
         { timezone: "Asia/Beirut", name: "(GMT+02:00) Beirut" },
         { timezone: "Africa/Cairo", name: "(GMT+02:00) Cairo" },
         { timezone: "Asia/Gaza", name: "(GMT+02:00) Gaza" },
-        { timezone: "Africa/Blantyre", name: "(GMT+02:00) Harare, Pretoria" },
+        { timezone: "Africa/Harare", name: "(GMT+02:00) Harare, Pretoria" },
         { timezone: "Asia/Jerusalem", name: "(GMT+02:00) Jerusalem" },
         { timezone: "Europe/Minsk", name: "(GMT+02:00) Minsk" },
         { timezone: "Asia/Damascus", name: "(GMT+02:00) Syria" },
         { timezone: "Europe/Moscow", name: "(GMT+03:00) Moscow, St. Petersburg, Volgograd" },
-        { timezone: "Africa/Addis_Ababa", name: "(GMT+03:00) Nairobi" },
+        { timezone: "Africa/Nairobi", name: "(GMT+03:00) Nairobi" },
         { timezone: "Asia/Tehran", name: "(GMT+03:30) Tehran" },
         { timezone: "Asia/Dubai", name: "(GMT+04:00) Abu Dhabi, Muscat" },
         { timezone: "Asia/Yerevan", name: "(GMT+04:00) Yerevan" },
         { timezone: "Asia/Kabul", name: "(GMT+04:30) Kabul" },
         { timezone: "Asia/Yekaterinburg", name: "(GMT+05:00) Ekaterinburg" },
         { timezone: "Asia/Tashkent", name: "(GMT+05:00) Tashkent" },
-        { timezone: "Asia/Kolkata", name: "(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi" },
-        { timezone: "Asia/Katmandu", name: "(GMT+05:45) Kathmandu" },
+        { timezone: "Asia/Calcutta", name: "(GMT+05:30) Chennai, Calcutta, Mumbai, New Delhi" },
+        { timezone: "Asia/Kathmandu", name: "(GMT+05:45) Kathmandu" },
         { timezone: "Asia/Dhaka", name: "(GMT+06:00) Astana, Dhaka" },
         { timezone: "Asia/Novosibirsk", name: "(GMT+06:00) Novosibirsk" },
-        { timezone: "Asia/Rangoon", name: "(GMT+06:30) Yangon (Rangoon)" },
+        { timezone: "Asia/Yangon", name: "(GMT+06:30) Yangon (Rangoon)" },
         { timezone: "Asia/Bangkok", name: "(GMT+07:00) Bangkok, Hanoi, Jakarta" },
         { timezone: "Asia/Krasnoyarsk", name: "(GMT+07:00) Krasnoyarsk" },
-        { timezone: "Asia/Hong_Kong", name: "(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi" },
+        { timezone: "Asia/Shanghai", name: "(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi" },
         { timezone: "Asia/Irkutsk", name: "(GMT+08:00) Irkutsk, Ulaan Bataar" },
         { timezone: "Australia/Perth", name: "(GMT+08:00) Perth" },
         { timezone: "Australia/Eucla", name: "(GMT+08:45) Eucla" },
@@ -141,12 +138,12 @@ generateTimezoneOptions() {
         { timezone: "Australia/Hobart", name: "(GMT+10:00) Hobart" },
         { timezone: "Asia/Vladivostok", name: "(GMT+10:00) Vladivostok" },
         { timezone: "Australia/Lord_Howe", name: "(GMT+10:30) Lord Howe Island" },
-        { timezone: "Etc/GMT-11", name: "(GMT+11:00) Solomon Is., New Caledonia" },
+        { timezone: "Pacific/Guadalcanal", name: "(GMT+11:00) Solomon Is., New Caledonia" },
         { timezone: "Asia/Magadan", name: "(GMT+11:00) Magadan" },
         { timezone: "Pacific/Norfolk", name: "(GMT+11:30) Norfolk Island" },
         { timezone: "Asia/Anadyr", name: "(GMT+12:00) Anadyr, Kamchatka" },
         { timezone: "Pacific/Auckland", name: "(GMT+12:00) Auckland, Wellington" },
-        { timezone: "Etc/GMT-12", name: "(GMT+12:00) Fiji, Kamchatka, Marshall Is." },
+        { timezone: "Pacific/Fiji", name: "(GMT+12:00) Fiji, Kamchatka, Marshall Is." },
         { timezone: "Pacific/Chatham", name: "(GMT+12:45) Chatham Islands" },
         { timezone: "Pacific/Tongatapu", name: "(GMT+13:00) Nuku'alofa" },
         { timezone: "Pacific/Kiritimati", name: "(GMT+14:00) Kiritimati" }
@@ -154,7 +151,7 @@ generateTimezoneOptions() {
 
     return timezones.map(
         (tz) =>
-        `<option value="${tz.timezone}">${tz.name}</option>`
+        `<option value="${tz.timezone}" ${tz.timezone === currentTimezone ? 'selected' : ''}>${tz.name}</option>`
     )
     .join('');
 }
