@@ -48,31 +48,6 @@ function updateTimezoneCards() {
   });
 }
 
-function addLocalTimeCard() {
-  const offset = (new Date().getTimezoneOffset() / -60).toString().padStart(2, "0") + ":00"; // get current timezone offset
-  const label = Intl.DateTimeFormat().resolvedOptions().timeZone; // get current timezone label
-
-  // Create a new card
-  const card = document.createElement("div");
-  card.className = "card";
-  card.dataset.offset = offset;
-
-  // Set the initial time based on current local time
-  const localTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // get current local time
-
-  // Add content to the card
-  card.innerHTML = `
-      <h2>${label}</h2>
-      <p><i>This is your local timezone</i></p>
-      <input type="time" id="local-time" value=${localTime}>
-  `;
-
-  // Append the card to the container
-  timezoneCards.appendChild(card);
-
-  // DO NOT ALLOW THIS CARD TO BE DELETED
-}
-
 // Function to add a new timezone card
 function addTimezoneCard() {
     const offset = timezoneSelect.value;
@@ -114,5 +89,12 @@ function addTimezoneCard() {
 localTimeInput.addEventListener("input", updateTimezoneCards);
 addTimezoneBtn.addEventListener("click", addTimezoneCard);
 
-// Initialise current timezone
-addLocalTimeCard();
+// initialise current local time
+document.getElementById('local-time').value = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+// initialise current timezone
+const offsetMinutes = new Date().getTimezoneOffset();
+const offsetHours = Math.floor(Math.abs(offsetMinutes) / 60);
+const offsetMins = Math.abs(offsetMinutes) % 60;
+const offsetSign = offsetMinutes <= 0 ? "+" : "-";
+document.getElementById("current-timezone-offset").textContent = `Current Timezone: UTC ${offsetSign}${offsetHours.toString().padStart(2, "0")}:${offsetMins.toString().padStart(2, "0")}`;
