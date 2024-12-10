@@ -128,27 +128,40 @@ color: #e74c3c;
 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Footer styles */
+/* Link button styles */
 .support {
-padding: 20px;
+margin: 0;
+padding-top: 5px;
+padding-bottom: 30px;
 text-align: center;
 font-family: 'Arial', sans-serif;
 }
 
-/* Footer text and links */
-.support p {
-margin: 0;
-color: #555;
-font-size: 14px;
-}
-
-.support a {
-text-decoration: none;
-color: #3498db; /* Light blue color for links */
+.support .button {
+display: inline-flex;
+align-items: center;
+background-color: #f3e9fd;
+color: #6e5494; /* GitHub's purple color */
+font-size: 18px;
 font-weight: bold;
-padding: 0 10px;
+padding: 10px 20px;
+border-radius: 25px; /* Makes the rectangle rounded */
+text-decoration: none;
+cursor: pointer;
+transition: all 0.3s ease;
 }
 
-.support a:hover {
-color: #e74c3c; /* Red color on hover */
+.support .button img {
+width: 32px;
+height: 32px;
+margin-right: 10px; /* Space between logo and text */
+}
+
+.support .button span {
+display: inline-block;
+}
+
+.support .button:hover {
+background-color: #bb9be6; /* Darker shade for hover effect */
+box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
