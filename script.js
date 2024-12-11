@@ -16,9 +16,7 @@
 */
 
 // DOM Elements
-const localTimeInput = document.getElementById("local-time");
 const timezoneSelect = document.getElementById("timezone-offset");
-const addTimezoneBtn = document.getElementById("add-timezone-btn");
 const timezoneCards = document.getElementById("timezone-cards");
 
 // Function to calculate time with a given offset, assuming local time is the user's local time
@@ -56,7 +54,9 @@ function calculateTime(localTime, offset) {
 
 // Function to update all timezone cards
 function updateTimezoneCards() {
-  const localTime = localTimeInput.value; // User's local time
+  const localHours = document.getElementById("local-time-hours").value;
+  const localMinutes = document.getElementById("local-time-minutes").value;
+  const localTime = `${localHours}:${localMinutes}`;
 
   document.querySelectorAll(".card").forEach((card) => {
     const offset = card.dataset.offset;
@@ -82,7 +82,9 @@ function addTimezoneCard() {
     card.dataset.offset = offset;
 
     // Set the initial time
-    const localTime = localTimeInput.value;
+    const localHours = document.getElementById("local-time-hours").value;
+    const localMinutes = document.getElementById("local-time-minutes").value;
+    const localTime = `${localHours}:${localMinutes}`;
     const time = calculateTime(localTime, offset);
 
     // Add content to the card
@@ -90,6 +92,7 @@ function addTimezoneCard() {
         <h2>${label}</h2>
         <p class="time">${time}</p>
         <button class="delete-btn">&times;</button>
+        <p><i></i></p> <!-- TODO: add DST active flag -->
     `;
 
     // Append the card to the container
@@ -103,11 +106,14 @@ function addTimezoneCard() {
 }
 
 // Event Listeners
-localTimeInput.addEventListener("input", updateTimezoneCards);
-addTimezoneBtn.addEventListener("click", addTimezoneCard);
+document.getElementById("local-time-hours").addEventListener("change", updateTimezoneCards);
+document.getElementById("local-time-minutes").addEventListener("change", updateTimezoneCards);
+document.getElementById('add-timezone-btn').addEventListener("click", addTimezoneCard);
 
 // initialise current local time
-document.getElementById('local-time').value = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+const now = new Date();
+document.getElementById('local-time-hours').value = now.getHours().toString().padStart(2, '0');
+document.getElementById('local-time-minutes').value = now.getMinutes().toString().padStart(2, '0');
 
 // initialise current timezone
 const offsetMinutes = new Date().getTimezoneOffset();

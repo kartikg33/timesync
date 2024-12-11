@@ -43,7 +43,26 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <!-- Local Time Selector -->
         <div class="local-time">
             <label for="local-time"><i><span id="current-timezone-offset"></span></i></label>
-            <input type="time" id="local-time" value="12:00">
+            <div class="local-time-input">
+                <select class="hour-select" id="local-time-hours">
+                   <!-- options will be automatically generated here -->
+                   <script>
+                       for (let i = 0; i <= 23; i++) {
+                           document.write(`<option value="${i.toString().padStart(2, '0')}">${i.toString().padStart(2, '0')}</option>`);
+                       }
+                   </script>
+                </select>
+                <div class="time-colon">:</div>
+                <select class="minute-select" id="local-time-minutes">
+                <!-- options will be automatically generated here -->
+                <script>
+                    for (let i = 0; i <= 59; i++) {
+                        document.write(`<option value="${i.toString().padStart(2, '0')}">${i.toString().padStart(2, '0')}</option>`);
+                    }
+                </script>
+                </select>
+            </div>
+            <div><span id="local-time-dst-status"></span></div>
         </div>
 
         <!-- Add Timezone -->
@@ -91,8 +110,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
               <option value="+13:00">(GMT +13:00) Apia, Nukualofa</option>
               <option value="+14:00">(GMT +14:00) Line Islands, Tokelau</option>
             </select>
-            <button id="add-timezone-btn">Add Timezone</button>
-            <a target="_blank" class="button" id="add-timezone-btn"></a>
+            <a target="_blank" class="button" id="add-timezone-btn">
                 <img src="https://img.icons8.com/nolan/64/add.png" alt="add" />
                 <span>Add Timezone</span>
             </a>
@@ -110,33 +128,5 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     </div>
 
     <script src="script.js"></script>
-    <script src="widget.js"></script>
-    <script>
-        // Initialize default widgets
-        const localTimeWidget = new TimeSelectorWidget('widget-container-local', Intl.DateTimeFormat().resolvedOptions().timeZone);
-
-        // update local time widget
-        const localTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        const [localHours, localMinutes] = localTime.split(':').map(Number);
-        localTimeWidget.updateWidgetTime(localHours * 60 + localMinutes);
-        localTimeWidget.hour = localHours;
-        localTimeWidget.minute = localMinutes;
-
-        // Add default widgets to the global list for synchronization
-        TimeSelectorWidget.instances.push(localTimeWidget);
-
-        // Add event listener to dynamically create new widgets
-        const addWidgetButton = document.getElementById('add-widget-button');
-        addWidgetButton.addEventListener('click', () => {
-        const container = document.getElementById('widgets-container');
-        const newWidgetId = `widget-container-${Date.now()}`; // Unique ID for the new widget
-        const newWidgetDiv = document.createElement('div');
-        newWidgetDiv.id = newWidgetId;
-        container.appendChild(newWidgetDiv);
-
-        const newWidget = new TimeSelectorWidget(newWidgetId);
-        TimeSelectorWidget.instances.push(newWidget); // Add the new widget to the global list
-        });
-    </script>
 </body>
 </html>

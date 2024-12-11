@@ -24,7 +24,7 @@ margin: 0;
 body {
 height: 100%;
 margin: 0;
-font-family: Arial, sans-serif;
+font-family: Roboto, Arial, sans-serif;
 background-color: #f4f4f4;
 margin: 0;
 padding: 20px;
@@ -54,6 +54,39 @@ padding: 5px;
 margin: 20px 0;
 }
 
+/* Time input styles */
+.local-time {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.local-time-input {
+display: flex;
+align-items: center;
+margin-bottom: 15px;
+}
+
+.local-time-input select {
+font-size: 20px;
+font-weight: bold;
+padding: 5px;
+width: 70px;
+text-align: center;
+border: 2px solid #ccc;
+border-radius: 8px;
+appearance: none;
+cursor: pointer;
+background-color: white;
+}
+
+.time-colon {
+font-size: 24px;
+font-weight: bold;
+margin: 0 10px;
+}
+
 /* Style the time input field */
 .local-time input[type="time"] {
 font-size: 1.5rem;       /* Larger text size */
@@ -75,7 +108,7 @@ box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); /* Soft blue shadow */
 
 /* Style the label to align it well */
 .local-time label {
-font-size: 1.2rem;            /* Slightly larger text for label */
+font-size: 1rem;            /* Slightly larger text for label */
 margin-bottom: 8px;           /* Space between label and input */
 display: block;               /* Ensure the label is above the input */
 color: #555;                  /* Dark text color for readability */
@@ -99,7 +132,6 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 position: relative;
 width: 200px;
 text-align: center;
-font-family: 'Arial', sans-serif;
 }
 
 /* Timezone text (small font) */
@@ -145,10 +177,9 @@ margin: 0;
 padding-top: 5px;
 padding-bottom: 30px;
 text-align: center;
-font-family: 'Arial', sans-serif;
 }
 
-.about .button {
+.button {
 margin: 2px;
 display: inline-flex;
 align-items: center;
@@ -163,17 +194,17 @@ cursor: pointer;
 transition: all 0.3s ease;
 }
 
-.about .button img {
+.button img {
 width: 32px;
 height: 32px;
 margin-right: 10px; /* Space between logo and text */
 }
 
-.about .button span {
+.button span {
 display: inline-block;
 }
 
-.about .button:hover {
+.button:hover {
 background-color: #f3e9fd; /* Darker shade for hover effect */
 }
 
@@ -190,31 +221,7 @@ margin-bottom: 20px;
 width: 300px;
 }
 
-/* Time input styles */
-.time-inputs {
-display: flex;
-align-items: center;
-margin-bottom: 15px;
-}
 
-.time-inputs select {
-font-size: 24px;
-font-weight: bold;
-padding: 5px;
-width: 70px;
-text-align: center;
-border: 2px solid #ccc;
-border-radius: 8px;
-appearance: none;
-cursor: pointer;
-background-color: transparent;
-}
-
-.time-colon {
-font-size: 24px;
-font-weight: bold;
-margin: 0 10px;
-}
 
 /* Timezone selector dropdown */
 .timezone-selector {
