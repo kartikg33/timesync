@@ -31,12 +31,6 @@ padding: 20px;
 color: #333;
 }
 
-h1, h2, h3 {
-margin: 5px;
-padding: 2px;
-}
-
-
 /* Flexbox container to hold the content and footer */
 .container {
 display: flex;
@@ -145,8 +139,8 @@ color: #e74c3c;
 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Link button styles */
-.actions {
+/* About section styles */
+.about {
 margin: 0;
 padding-top: 5px;
 padding-bottom: 30px;
@@ -154,7 +148,7 @@ text-align: center;
 font-family: 'Arial', sans-serif;
 }
 
-.actions .button {
+.about .button {
 margin: 2px;
 display: inline-flex;
 align-items: center;
@@ -169,17 +163,17 @@ cursor: pointer;
 transition: all 0.3s ease;
 }
 
-.actions .button img {
+.about .button img {
 width: 32px;
 height: 32px;
 margin-right: 10px; /* Space between logo and text */
 }
 
-.actions .button span {
+.about .button span {
 display: inline-block;
 }
 
-.actions .button:hover {
+.about .button:hover {
 background-color: #f3e9fd; /* Darker shade for hover effect */
 }
 
