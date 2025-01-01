@@ -47,7 +47,7 @@ max-height: 200px;
 }
 
 #timezone-offset {
-font-size: 20px;
+font-size: 14px;
 font-weight: bold;
 padding: 5px;
 width: max-content;
@@ -55,7 +55,7 @@ min-width: 250px;
 text-align: left;
 border: 2px solid #ccc;
 border-radius: 8px;
-appearance: menulist-button;
+appearance: none;
 cursor: pointer;
 background-color: white;
 transition: border-color 0.3s ease, box-shadow 0.3s ease;
