@@ -23,31 +23,14 @@ const timezoneCards = document.getElementById("timezone-cards");
 function calculateTime(localTime, offset) {
   const [localHours, localMinutes] = localTime.split(":").map(Number);
 
-  // Get user's local timezone offset in minutes (negative for GMT+)
-  const localOffsetMinutes = new Date().getTimezoneOffset(); // e.g., -330 for IST (GMT+5:30)
+  // Create a Date object with the local time
+  const localDate = new Date();
+  localDate.setHours(localHours, localMinutes, 0, 0);
 
-  // Parse the selected offset (e.g., +05:30 -> +5 hours, 30 minutes)
-  const offsetSign = offset[0] === "+" ? 1 : -1;
-  const [offsetHours, offsetMinutes] = offset.slice(1).split(":").map(Number);
-
-  // Convert local time (in user local timezone) to UTC
-  let totalMinutes = localHours * 60 + localMinutes + localOffsetMinutes;
-
-  // Adjust for the selected timezone offset
-  totalMinutes += offsetSign * (offsetHours * 60 + offsetMinutes);
-
-  // Handle overflow of minutes into hours and days
-  let newHours = Math.floor(totalMinutes / 60) % 24;
-  let newMinutes = totalMinutes % 60;
-
-  // Adjust for negative hours (e.g., -1 hour should become 23:00 of the previous day)
-  if (newMinutes < 0) {
-    newMinutes += 60;
-    newHours -= 1;
-  }
-  if (newHours < 0) {
-    newHours += 24;
-  }
+  // Convert the local time to the specified timezone
+  const options = { timeZone: timezone, hour: '2-digit', minute: '2-digit', hour12: false };
+  const formatter = new Intl.DateTimeFormat([], options);
+  const [newHours, newMinutes] = formatter.format(localDate).split(":").map(Number);
 
   return `${newHours.toString().padStart(2, "0")}:${newMinutes.toString().padStart(2, "0")}`;
 }
@@ -59,19 +42,19 @@ function updateTimezoneCards() {
   const localTime = `${localHours}:${localMinutes}`;
 
   document.querySelectorAll(".card").forEach((card) => {
-    const offset = card.dataset.offset;
+    const timezone = card.dataset.timezone;
     const timeElement = card.querySelector(".time");
-    timeElement.textContent = calculateTime(localTime, offset);
+    timeElement.textContent = calculateTime(localTime, timezone);
   });
 }
 
 // Function to add a new timezone card
 function addTimezoneCard() {
-    const offset = timezoneSelect.value;
+    const timezone = timezoneSelect.value;
     const label = timezoneSelect.options[timezoneSelect.selectedIndex].text;
 
     // Check if the timezone is already added
-    if (document.querySelector(`.card[data-offset="${offset}"]`)) {
+    if (document.querySelector(`.card[data-timezone="${timezone}"]`)) {
         alert("Timezone already added!");
         return;
     }
@@ -79,13 +62,13 @@ function addTimezoneCard() {
     // Create a new card
     const card = document.createElement("div");
     card.className = "card";
-    card.dataset.offset = offset;
+    card.dataset.timezone = timezone;
 
     // Set the initial time
     const localHours = document.getElementById("local-time-hours").value;
     const localMinutes = document.getElementById("local-time-minutes").value;
     const localTime = `${localHours}:${localMinutes}`;
-    const time = calculateTime(localTime, offset);
+    const time = calculateTime(localTime, timezone);
 
     // Add content to the card
     card.innerHTML = `
