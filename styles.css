@@ -1,3 +1,20 @@
+/*
+* Copyright (C) 2024 Kartik Gohil
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
 html {
 height: 100%;
 margin: 0;
@@ -7,18 +24,12 @@ margin: 0;
 body {
 height: 100%;
 margin: 0;
-font-family: Arial, sans-serif;
+font-family: Roboto, Arial, sans-serif;
 background-color: #f4f4f4;
 margin: 0;
 padding: 20px;
 color: #333;
 }
-
-h1, h2 {
-margin: 0;
-padding: 10px;
-}
-
 
 /* Flexbox container to hold the content and footer */
 .container {
@@ -36,11 +47,62 @@ max-height: 200px;
 }
 
 #timezone-offset {
+font-size: 14px;
+font-weight: bold;
 padding: 5px;
+width: max-content;
+min-width: 250px;
+text-align: left;
+border: 2px solid #ccc;
+border-radius: 8px;
+appearance: none;
+cursor: pointer;
+background-color: white;
+transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .add-timezone {
 margin: 20px 0;
+}
+
+/* Time input styles */
+.local-time {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.local-time-input {
+display: flex;
+align-items: center;
+margin-bottom: 15px;
+}
+
+.timezone-select {
+display: flex;
+margin-bottom: 15px;
+align-items: center;
+justify-content: center;
+}
+
+.local-time-input select {
+font-size: 20px;
+font-weight: bold;
+padding: 5px;
+width: 70px;
+text-align: center;
+border: 2px solid #ccc;
+border-radius: 8px;
+appearance: none;
+cursor: pointer;
+background-color: white;
+}
+
+.time-colon {
+font-size: 24px;
+font-weight: bold;
+margin: 0 10px;
 }
 
 /* Style the time input field */
@@ -64,7 +126,7 @@ box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); /* Soft blue shadow */
 
 /* Style the label to align it well */
 .local-time label {
-font-size: 1.2rem;            /* Slightly larger text for label */
+font-size: 1rem;            /* Slightly larger text for label */
 margin-bottom: 8px;           /* Space between label and input */
 display: block;               /* Ensure the label is above the input */
 color: #555;                  /* Dark text color for readability */
@@ -88,7 +150,6 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 position: relative;
 width: 200px;
 text-align: center;
-font-family: 'Arial', sans-serif;
 }
 
 /* Timezone text (small font) */
@@ -103,7 +164,7 @@ margin: 0;
 font-size: 36px;
 font-weight: bold;
 color: #333;
-margin-top: 10px;
+margin: 10px;
 letter-spacing: 2px;
 }
 
@@ -128,40 +189,67 @@ color: #e74c3c;
 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Link button styles */
-.support {
+/* About section styles */
+.about {
 margin: 0;
 padding-top: 5px;
 padding-bottom: 30px;
 text-align: center;
-font-family: 'Arial', sans-serif;
 }
 
-.support .button {
+.button {
+margin: 5px 5px;
 display: inline-flex;
 align-items: center;
-background-color: #f3e9fd;
+background-color: white;
 color: #6e5494; /* GitHub's purple color */
 font-size: 18px;
 font-weight: bold;
-padding: 10px 20px;
+padding: 10px 20px 10px 15px;
 border-radius: 25px; /* Makes the rectangle rounded */
 text-decoration: none;
 cursor: pointer;
 transition: all 0.3s ease;
 }
 
-.support .button img {
+.button img {
 width: 32px;
 height: 32px;
 margin-right: 10px; /* Space between logo and text */
 }
 
-.support .button span {
+.button span {
 display: inline-block;
 }
 
-.support .button:hover {
-background-color: #bb9be6; /* Darker shade for hover effect */
-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+.button:hover {
+background-color: #f3e9fd; /* Darker shade for hover effect */
+}
+
+/* Main widget container styles */
+.time-selector {
+display: flex;
+flex-direction: column;
+align-items: center;
+background: #fff;
+border-radius: 12px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+padding: 20px;
+margin-bottom: 20px;
+width: 300px;
+}
+
+
+
+/* Timezone selector dropdown */
+.timezone-selector {
+margin-bottom: 10px;
+font-size: 16px;
+width: 100%;
+}
+
+/* Offset and DST label styles */
+.offset-label {
+font-size: 14px;
+color: #555;
 }
